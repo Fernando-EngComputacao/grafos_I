@@ -1,15 +1,15 @@
-# Data Structures
+# Graph
 
-# Summary
+In this folder we have the Graph project with the [IGraphService](src/main/java/br/com/gomide/data_structures/graph/service/IGraphService.java) interface.
 
-- [Introduction](#introduction)
-- [Binary Tree](/binary-tree/)
-- [URL Shortener](/url-shortener/)
-- [Graphs](/graphs)
-# Introduction
+The `IGraphService` interface contains the methods related to Graphs operations. 
 
-I'm using this repo in my Data Structures classes. 
+## Exercise
 
-Here we have some examples and exercises. This repo will be updated on demand.
+We have a test class to check the [GraphService](src/main/java/br/com/gomide/data_structures/graph/service/GraphService.java) implementation.
 
-Enjoy!
+You should open the [GraphServiceTest](src/test/java/br/com/gomide/data_structures/graph/service/GraphServiceTest.java) to know how `GraphService` will work.
+
+Also, implement the [Graph](src/main/java/br/com/gomide/data_structures/graph/model/Graph.java), [NonDirectedGraph](src/main/java/br/com/gomide/data_structures/graph/model/NonDirectedGraph.java) and [DirectedGraph](src/main/java/br/com/gomide/data_structures/graph/model/DirectedGraph.java) using any approach (matrix, object oriented or another one...).
+
+Complete the `GraphService` implementation to make all tests green.
