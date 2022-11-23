@@ -3,27 +3,26 @@ package br.com.gomide.data_structures.graph.service;
 import java.util.List;
 
 import br.com.gomide.data_structures.graph.model.DirectedGraph;
+import br.com.gomide.data_structures.graph.model.Edge;
 import br.com.gomide.data_structures.graph.model.Graph;
 import br.com.gomide.data_structures.graph.model.NonDirectedGraph;
+import br.com.gomide.data_structures.graph.model.Vertice;
 
 public class GraphService implements IGraphService {
 
 	@Override
-	public void addNodes(List<String> nodes, Graph graph) {
-		// TODO Auto-generated method stub
-		
+	public void addNodes(List<String> labels, Graph graph) {
+		labels.forEach(label -> addNode(label, graph));
 	}
 
 	@Override
-	public void addNode(String node, Graph graph) {
-		// TODO Auto-generated method stub
-		
+	public void addNode(String label, Graph graph) {
+		graph.addVertice(label);
 	}
 
 	@Override
-	public void connectNode(String firstNode, String secondNode, Graph graph) {
-		// TODO Auto-generated method stub
-		
+	public void connectNode(String firstLabel, String secondLabel, Graph graph) {
+		graph.addEdge(firstLabel, secondLabel);
 	}
 
 	@Override
@@ -74,8 +73,5 @@ public class GraphService implements IGraphService {
 		return null;
 	}
 
-	
-
-	
 
 }
