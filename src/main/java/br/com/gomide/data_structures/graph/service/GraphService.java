@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.com.gomide.data_structures.graph.model.DirectedGraph;
@@ -76,13 +77,22 @@ public class GraphService implements IGraphService {
 
 	@Override
 	public String showPath(String origin, String destination, DirectedGraph graph) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String showPath(String origin, String destination, NonDirectedGraph graph) {
-		// TODO Auto-generated method stub
+
+		Optional<Edge> first = graph.getEdges()
+			.stream()
+			.filter(edge -> edge.getStartpoint().getLabel().equals(origin))
+			.findFirst();
+		Optional<Edge> last = graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getEndpoint().getLabel().equals(destination))
+				.findFirst();
+		
+		System.out.println(first.get());
 		return null;
 	}
 
