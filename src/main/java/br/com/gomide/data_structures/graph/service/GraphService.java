@@ -1,12 +1,16 @@
 package br.com.gomide.data_structures.graph.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.gomide.data_structures.graph.model.DirectedGraph;
+import br.com.gomide.data_structures.graph.model.Edge;
 import br.com.gomide.data_structures.graph.model.Graph;
 import br.com.gomide.data_structures.graph.model.NonDirectedGraph;
+import br.com.gomide.data_structures.graph.model.Vertice;
 
 public class GraphService implements IGraphService {
 
@@ -58,8 +62,16 @@ public class GraphService implements IGraphService {
 
 	@Override
 	public boolean isComplete(Graph graph) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean state = true;
+		for (Vertice element : graph.getVertice()) {
+			int soma = (int) graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getEndpoint().getLabel().equals(element.getLabel()) || edge.getStartpoint().getLabel().equals(element.getLabel()))
+				.count();
+			state = (state == false ? false : (soma != (graph.getVertice().size() - 1) ? false : true));	
+		}
+		
+        return state;
 	}
 
 	@Override
