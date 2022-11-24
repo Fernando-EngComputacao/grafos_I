@@ -1,12 +1,12 @@
 package br.com.gomide.data_structures.graph.service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.gomide.data_structures.graph.model.DirectedGraph;
-import br.com.gomide.data_structures.graph.model.Edge;
 import br.com.gomide.data_structures.graph.model.Graph;
 import br.com.gomide.data_structures.graph.model.NonDirectedGraph;
-import br.com.gomide.data_structures.graph.model.Vertice;
 
 public class GraphService implements IGraphService {
 
@@ -27,20 +27,27 @@ public class GraphService implements IGraphService {
 
 	@Override
 	public int countLoops(Graph graph) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getStartpoint().equals(edge.getEndpoint()))
+				.count();
 	}
 
 	@Override
 	public int countMultipleLink(Graph graph) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) graph.getEdges()
+				.stream()
+				.distinct()
+				.filter(edge -> Collections.frequency(graph.getEdges(), edge) > 1)
+				.count();
 	}
 
 	@Override
-	public int nodeDegree(String node, Graph graph) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int nodeDegree(String label, Graph graph) {
+		return (int) graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getStartpoint().getLabel().equals(label) || edge.getEndpoint().getLabel().equals(label))
+				.count();
 	}
 
 	@Override
@@ -69,8 +76,7 @@ public class GraphService implements IGraphService {
 
 	@Override
 	public String toString(Graph graph) {
-		// TODO Auto-generated method stub
-		return null;
+		return graph.toString();
 	}
 
 

@@ -23,12 +23,9 @@ public abstract class Graph {
 	
 	public void addEdge(String firstLabel, String secondLabel) {
 		Vertice verticeS = findVertice(firstLabel);
-		Vertice verticeE = findVertice(firstLabel);
+		Vertice verticeE = findVertice(secondLabel);
 		Edge edge = new Edge(verticeS, verticeE);
-		//TODO: verificar o que deve acontecer quando algum vertice não existir
-		if(!edges.contains(edge)) {
-			edges.add(edge);
-		}
+		edges.add(edge);
 	}
 	
 	private Vertice findVertice(String vertice) {
@@ -37,5 +34,13 @@ public abstract class Graph {
 				.filter(v -> vertice.equals(v.getLabel()))
 				.findFirst()
 				.orElse(null);
+	}
+	
+	@Override
+	public String toString() {
+		return this.getVertice().stream()
+	    	.map(vertice -> vertice.getLabel())
+	    	.reduce("Nodes:", (previous, current) -> (previous + " " + current))
+	    	.toString();	    			
 	}
 }
