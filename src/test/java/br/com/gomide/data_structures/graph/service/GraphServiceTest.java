@@ -327,9 +327,9 @@ class GraphServiceTest {
 		graphService.connectNode("C", "D", graph);
 		graphService.connectNode("D", "E", graph);
 		graphService.connectNode("E", "F", graph);
-
 		graphService.connectNode("D", "B", graph);
 		graphService.connectNode("E", "C", graph);
+		
 
 		String path = graphService.showPath("A", "F", (NonDirectedGraph) graph);
 
