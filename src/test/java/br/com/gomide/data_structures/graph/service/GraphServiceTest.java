@@ -70,7 +70,7 @@ class GraphServiceTest {
 		graphService.connectNode("C", "D", graph);
 		graphService.connectNode("D", "A", graph);
 		graphService.connectNode("A", "C", graph);
-		
+
 		String graphRepresentation = graphService.toString(graph);
 
 		assertTrue(graphRepresentation.contains("Nodes: A B C D"));

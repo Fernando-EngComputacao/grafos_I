@@ -2,7 +2,7 @@ package br.com.gomide.data_structures.graph.model;
 
 import java.util.ArrayList;
 
-public abstract class Graph {	
+public abstract class Graph {
 	private ArrayList<Vertice> vertices = new ArrayList<Vertice>();
 	private ArrayList<Edge> edges = new ArrayList<Edge>();
 
