@@ -36,4 +36,9 @@ public class Vertice implements Comparable<Vertice>{
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return this.label;
+	}
 }

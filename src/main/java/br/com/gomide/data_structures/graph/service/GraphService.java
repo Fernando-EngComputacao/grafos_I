@@ -3,8 +3,10 @@ package br.com.gomide.data_structures.graph.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.gomide.data_structures.graph.model.DirectedGraph;
+import br.com.gomide.data_structures.graph.model.Edge;
 import br.com.gomide.data_structures.graph.model.Graph;
 import br.com.gomide.data_structures.graph.model.NonDirectedGraph;
 import br.com.gomide.data_structures.graph.model.Vertice;
@@ -52,9 +54,9 @@ public class GraphService implements IGraphService {
 	}
 
 	@Override
-	public boolean isConnected(Graph graph) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isConnected(Graph graph) {	
+		List<Vertice> v = walkInGraphBy(graph.getVertice(), graph.getEdges(), graph.getVertice().get(0));
+		return v.isEmpty();
 	}
 
 	@Override
@@ -111,4 +113,19 @@ public class GraphService implements IGraphService {
 		return graph.toString();
 	}
 
+	private List<Vertice> walkInGraphBy(List<Vertice> vertices, List<Edge> edges, Vertice origin) {
+		List<Edge> edgesByOrigin = edges
+				.stream()
+				.filter(edge -> !edge.isResolved() && edge.getStartpoint().equals(origin))
+				.collect(Collectors.toList());
+		int s = edgesByOrigin.size();
+		if (s > 0) {
+			edgesByOrigin.forEach(edge -> {
+				edges.stream().filter(e -> e.equals(edge)).forEach(e-> e.switchResolved());
+				vertices.remove(origin);
+				walkInGraphBy(vertices, edges, edge.getEndpoint());
+			});
+		} 
+		return vertices;
+	}
 }
