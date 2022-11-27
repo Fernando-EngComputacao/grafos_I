@@ -30,19 +30,26 @@ public class GraphService implements IGraphService {
 
 	@Override
 	public int countLoops(Graph graph) {
-		return (int) graph.getEdges().stream().filter(edge -> edge.getStartpoint().equals(edge.getEndpoint())).count();
+		return (int) graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getStartpoint().equals(edge.getEndpoint()))
+				.count();
 	}
 
 	@Override
 	public int countMultipleLink(Graph graph) {
-		return (int) graph.getEdges().stream().distinct()
-				.filter(edge -> Collections.frequency(graph.getEdges(), edge) > 1).count();
+		return (int) graph.getEdges()
+				.stream()
+				.distinct()
+				.filter(edge -> Collections.frequency(graph.getEdges(), edge) > 1)
+				.count();
 	}
 
 	@Override
 	public int nodeDegree(String label, Graph graph) {
-		return (int) graph.getEdges().stream().filter(
-				edge -> edge.getStartpoint().getLabel().equals(label) || edge.getEndpoint().getLabel().equals(label))
+		return (int) graph.getEdges()
+				.stream()
+				.filter(edge -> edge.getStartpoint().getLabel().equals(label) || edge.getEndpoint().getLabel().equals(label))
 				.count();
 	}
 
@@ -56,9 +63,9 @@ public class GraphService implements IGraphService {
 	public boolean isComplete(Graph graph) {
 		boolean state = true;
 		for (Vertice element : graph.getVertice()) {
-			int soma = (int) graph.getEdges().stream()
-					.filter(edge -> edge.getEndpoint().getLabel().equals(element.getLabel())
-							|| edge.getStartpoint().getLabel().equals(element.getLabel()))
+			int soma = (int) graph.getEdges()
+					.stream()
+					.filter(edge -> edge.getEndpoint().getLabel().equals(element.getLabel()) || edge.getStartpoint().getLabel().equals(element.getLabel()))
 					.count();
 			state = (state == false ? false : (soma != (graph.getVertice().size() - 1) ? false : true));
 		}
